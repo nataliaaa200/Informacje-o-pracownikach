@@ -11,23 +11,14 @@ namespace Informacje_o_pracownikach
         public Form1()
         {
             InitializeComponent();
-            InitializeGrid();
+            InitializeDataTable();
         }
-        private void InitializeGrid()
-        {
-            dataGridViewEmployees.ColumnCount = 5;
-            dataGridViewEmployees.Columns[0].Name = "ID";
-            dataGridViewEmployees.Columns[1].Name = "Imiê";
-            dataGridViewEmployees.Columns[2].Name = "Nazwisko";
-            dataGridViewEmployees.Columns[3].Name = "Wiek";
-            dataGridViewEmployees.Columns[4].Name = "Stanowisko";
-        }
-
+       
         private void btnDodaj_Click(object sender, EventArgs e)
         {
-            if (dataTable == null) // SprawdŸ, czy tabela jest zainicjowana
+            if (dataTable == null) 
             {
-                InitializeDataTable(); // Inicjalizuj DataTable
+                InitializeDataTable(); 
             }
             var DodajPracownika = new DodajPracownika(nextId);
             if (DodajPracownika.ShowDialog() == DialogResult.OK)
@@ -46,6 +37,7 @@ namespace Informacje_o_pracownikach
             dataTable.Columns.Add("Wiek");
             dataTable.Columns.Add("Stanowisko");
 
+            dataGridViewEmployees.AutoGenerateColumns = true;
             dataGridViewEmployees.DataSource = dataTable;
         }
         private void btnUsuñ_Click(object sender, EventArgs e)
